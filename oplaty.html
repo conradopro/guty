@@ -22,16 +22,13 @@
       <span class="brand-text">ROD Kisajno<small>Guty</small></span>
     </a>
     <nav class="main-nav" id="mainNav">
-        <a href="index.html" class="nav-link">Strona główna</a>
         <a href="aktualnosci.html" class="nav-link">Aktualności</a>
         <a href="oplaty.html" class="nav-link active">Opłaty</a>
-        <a href="kalkulator.html" class="nav-link">Kalkulator opłat</a>
         <a href="dokumenty.html" class="nav-link">Dokumenty</a>
         <a href="informacje.html" class="nav-link">Informacje</a>
         <a href="mapa.html" class="nav-link">Mapa ogrodu</a>
         <a href="kontakt.html" class="nav-link">Kontakt</a>
     </nav>
-    <a href="oplaty.html" class="btn btn-lime btn-sm nav-cta">Opłaty 2026</a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span></button>
   </div>
 </header>
@@ -88,22 +85,22 @@
       </div>
     </div>
 
-       <div class="fee-block reveal">
-      <table class="fee-table">
-        <caption>Rozliczenie mediów<span class="cap-sub">wg faktur GZK Sp. z o.o. w Bystrym k/Giżycka</span></caption>
-        <tbody>
-          <tr><td>Woda</td><td>5,50 zł / m&sup3;</td></tr>
-          <tr><td>Energia elektryczna</td><td>1,45 zł / kWh</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
     <div class="fee-block reveal mt-lg">
       <table class="fee-table">
         <caption>Kary</caption>
         <tbody>
           <tr><td>Kradzież wody lub energii</td><td>5&nbsp;000,00 zł</td></tr>
           <tr><td>Wywożenie odpadów w miejsca niedozwolone</td><td>500,00 zł</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fee-block reveal">
+      <table class="fee-table">
+        <caption>Rozliczenie mediów<span class="cap-sub">wg faktur GZK Sp. z o.o. w Bystrym k/Giżycka</span></caption>
+        <tbody>
+          <tr><td>Woda</td><td>5,50 zł / m&sup3;</td></tr>
+          <tr><td>Energia elektryczna</td><td>1,45 zł / kWh</td></tr>
         </tbody>
       </table>
     </div>
@@ -120,13 +117,178 @@
       </div>
     </div>
 
-    <div class="note-box mt-lg reveal" style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
-      <span>Nie chce Ci się liczyć ręcznie? Skorzystaj z kalkulatora opłat &mdash; wpisz stany liczników i powierzchnię działki, a policzy wszystko za Ciebie.</span>
-      <a href="kalkulator.html" class="btn btn-solid btn-sm" style="flex-shrink:0;">Otwórz kalkulator &rarr;</a>
+  </div>
+</section>
+
+<section class="bg-tint" id="kalkulator" style="scroll-margin-top:90px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge">Narzędzie dla działkowców</span>
+      <h2>Kalkulator opłat</h2>
+      <p class="lead">Nie chce Ci się liczyć ręcznie? Wpisz stany liczników i numer działki &mdash; kalkulator policzy szacunkową kwotę do zapłaty wg stawek powyżej.</p>
+    </div>
+
+    <div class="calc-grid reveal">
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Opłata za energię elektryczną</h3>
+        <p style="color:var(--muted); font-size:.88rem; margin-bottom:18px;">Wpisz poprzedni i aktualny stan licznika prądu.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="prevEnergy">Poprzedni stan (kWh)</label>
+            <input type="number" id="prevEnergy" min="0" step="0.01" placeholder="np. 1200" oninput="recalc()">
+          </div>
+          <div class="field">
+            <label for="currEnergy">Aktualny stan (kWh)</label>
+            <input type="number" id="currEnergy" min="0" step="0.01" placeholder="np. 1340" oninput="recalc()">
+          </div>
+        </div>
+        <div class="field">
+          <label for="rateEnergy">Stawka za energię <span class="hint">domyślnie wg cennika 2026 &mdash; zmień, jeśli Zarząd zaktualizuje stawkę</span></label>
+          <input type="number" id="rateEnergy" min="0" step="0.01" value="1.45" oninput="recalc()">
+        </div>
+        <div class="calc-result">
+          Zużycie: <strong id="energyUsageOut">0</strong> kWh
+          <span class="amount" id="energyCostOut">0,00 zł</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💧</div>
+        <h3>Opłata za wodę</h3>
+        <p style="color:var(--muted); font-size:.88rem; margin-bottom:18px;">Wpisz poprzedni i aktualny stan licznika wody.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="prevWater">Poprzedni stan (m&sup3;)</label>
+            <input type="number" id="prevWater" min="0" step="0.01" placeholder="np. 45" oninput="recalc()">
+          </div>
+          <div class="field">
+            <label for="currWater">Aktualny stan (m&sup3;)</label>
+            <input type="number" id="currWater" min="0" step="0.01" placeholder="np. 52" oninput="recalc()">
+          </div>
+        </div>
+        <div class="field">
+          <label for="rateWater">Stawka za wodę <span class="hint">domyślnie wg cennika 2026 &mdash; zmień, jeśli Zarząd zaktualizuje stawkę</span></label>
+          <input type="number" id="rateWater" min="0" step="0.01" value="5.50" oninput="recalc()">
+        </div>
+        <div class="calc-result">
+          Zużycie: <strong id="waterUsageOut">0</strong> m&sup3;
+          <span class="amount" id="waterCostOut">0,00 zł</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card reveal mt-lg">
+      <div class="card-icon">🌱</div>
+      <h3>Roczna opłata za działkę</h3>
+      <p style="color:var(--muted); font-size:.88rem; margin-bottom:18px;">Podaj numer swojej działki &mdash; powierzchnia zostanie pobrana z planu użytkowania ROD. Możesz ją później ręcznie poprawić, jeśli się różni.</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="plotNumber">Numer działki</label>
+          <input type="number" id="plotNumber" min="1" step="1" placeholder="np. 42" oninput="lookupPlot()">
+          <span class="hint" id="plotLookupHint">Wpisz numer działki, aby automatycznie uzupełnić powierzchnię.</span>
+        </div>
+        <div class="field">
+          <label for="plotArea">Powierzchnia działki (m&sup2;) <span class="hint">uzupełniana automatycznie, ale możesz ją zmienić</span></label>
+          <input type="number" id="plotArea" min="0" step="1" placeholder="np. 500" oninput="recalc()">
+        </div>
+      </div>
+      <div class="field">
+        <label for="rateGarden">Stawka opłaty ogrodowej (zł / m&sup2;)</label>
+        <input type="number" id="rateGarden" min="0" step="0.01" value="0.62" oninput="recalc()">
+      </div>
+      <label class="field-check"><input type="checkbox" id="spouseFee" onchange="recalc()"> Współmałżonek posiada prawo do działki (dodatkowa opłata członkowska 10 zł)</label>
+      <label class="field-check"><input type="checkbox" id="newMember" onchange="recalc()"> Nowy członek &mdash; doliczyć opłatę wpisową (700 zł) i inwestycyjną (373 zł)</label>
+    </div>
+
+    <div class="total-box mt-lg reveal">
+      <span class="badge">Łącznie do zapłaty w 2026 roku</span>
+      <div class="amount" id="totalOut">0,00 zł</div>
+      <ul class="breakdown-list" id="breakdownOut"></ul>
+    </div>
+
+    <div class="calc-disclaimer reveal">
+      <span>ℹ️</span>
+      <span>Kalkulator ma charakter poglądowy i pomocniczy &mdash; ostateczną wysokość zobowiązań zawsze potwierdź z księgową lub Zarządem ROD. Obliczenia wykonywane są wyłącznie lokalnie w Twojej przeglądarce &mdash; żadne wpisane dane nie są nigdzie wysyłane ani zapisywane.</span>
     </div>
 
   </div>
 </section>
+
+<script>
+var PLOT_AREAS = {1:716,2:501,3:528,4:518,5:511,6:564,7:524,8:532,9:504,10:507,11:507,12:516,13:525,14:526,15:515,16:531,17:531,18:533,19:526,20:540,21:486,22:500,23:585,24:588,25:499,26:452,27:499,28:507,29:502,30:460,31:511,32:509,33:500,34:479,35:498,36:475,37:482,38:673,39:468,40:479,41:501,42:502,43:498,44:503,45:488,46:493,47:493,48:498,49:501,50:498,51:502,52:511,53:486,54:486,55:486,56:556,57:555,58:554,59:507,60:507,61:530,62:530,63:546,64:560,65:582,66:581,67:813,68:717,69:527,70:469,71:503,72:292,73:803,74:409,75:533,76:568,77:513,78:924,79:573,80:641,81:573,82:609,83:498,84:501,85:501,86:518,87:588,88:671,89:523,91:503,92:507,93:716,94:497,95:534,96:499,97:534,98:494,99:519,100:506,101:506,102:500,103:460,104:482,106:503,107:478,108:501,109:497,110:510,111:495,112:501,113:513,114:482,115:506,116:491,117:506,118:479,119:482,120:469,121:503,122:507,123:501,124:496,125:487,126:492,127:483,128:497,129:486,130:504,131:476,132:498,133:479,134:492,135:469,136:495,137:496,138:508,139:485,140:500,141:492,142:500,143:496,144:513,145:502,146:468,147:505,148:481,149:492,150:469,151:506,152:457,153:507,154:492,155:498,156:475,157:503,158:639,159:515,160:417,161:468,162:417,163:493,164:507,165:488,166:499,167:487,168:533,169:491,170:499,171:473,172:502,173:473,174:493,175:506,176:494,177:482,178:502,179:499,180:476,181:499,182:487,183:533,184:471,185:503,186:413,187:413,188:525,189:526,190:432,197:363};
+
+function lookupPlot(){
+  var raw = document.getElementById('plotNumber').value;
+  var hint = document.getElementById('plotLookupHint');
+  var nr = parseInt(raw, 10);
+  if (!raw){
+    hint.textContent = 'Wpisz numer działki, aby automatycznie uzupełnić powierzchnię.';
+    hint.style.color = '';
+    recalc();
+    return;
+  }
+  if (PLOT_AREAS.hasOwnProperty(nr)){
+    document.getElementById('plotArea').value = PLOT_AREAS[nr];
+    hint.textContent = 'Znaleziono w planie ROD: ' + PLOT_AREAS[nr] + ' m² (działka nr ' + nr + ').';
+    hint.style.color = 'var(--green-700)';
+  } else {
+    hint.textContent = 'Nie znaleziono działki nr ' + nr + ' w planie &mdash; wpisz powierzchnię ręcznie.';
+    hint.style.color = 'var(--amber-600)';
+  }
+  recalc();
+}
+
+function fmt(n){
+  return n.toLocaleString('pl-PL', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' zł';
+}
+function num(id){
+  var v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? 0 : v;
+}
+function recalc(){
+  var prevE = num('prevEnergy'), currE = num('currEnergy'), rateE = num('rateEnergy');
+  var usageE = Math.max(0, currE - prevE);
+  var costE = usageE * rateE;
+  document.getElementById('energyUsageOut').textContent = usageE.toLocaleString('pl-PL');
+  document.getElementById('energyCostOut').textContent = fmt(costE);
+
+  var prevW = num('prevWater'), currW = num('currWater'), rateW = num('rateWater');
+  var usageW = Math.max(0, currW - prevW);
+  var costW = usageW * rateW;
+  document.getElementById('waterUsageOut').textContent = usageW.toLocaleString('pl-PL');
+  document.getElementById('waterCostOut').textContent = fmt(costW);
+
+  var area = num('plotArea'), rateG = num('rateGarden');
+  var gardenFee = area * rateG;
+  var membership = 10 + (document.getElementById('spouseFee').checked ? 10 : 0);
+  var waste = 110;
+  var devFund = 25;
+  var newMemberFees = document.getElementById('newMember').checked ? (700 + 373) : 0;
+
+  var total = costE + costW + gardenFee + membership + waste + devFund + newMemberFees;
+  document.getElementById('totalOut').textContent = fmt(total);
+
+  var rows = [
+    ['Opłata za energię elektryczną', costE],
+    ['Opłata za wodę', costW],
+    ['Opłata ogrodowa (od powierzchni działki)', gardenFee],
+    ['Opłata członkowska', membership],
+    ['Opłata za wywóz śmieci', waste],
+    ['Fundusz rozwoju', devFund],
+  ];
+  if (newMemberFees > 0) rows.push(['Opłaty dla nowych członków (wpisowa + inwestycyjna)', newMemberFees]);
+
+  var html = '';
+  rows.forEach(function(r){
+    html += '<li><span>' + r[0] + '</span><span>' + fmt(r[1]) + '</span></li>';
+  });
+  document.getElementById('breakdownOut').innerHTML = html;
+}
+document.addEventListener('DOMContentLoaded', recalc);
+</script>
 
 <footer>
   <div class="container">
