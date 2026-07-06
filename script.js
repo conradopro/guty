@@ -26,4 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     revealEls.forEach(function (el) { el.classList.add('in-view'); });
   }
+
+  // Build email links from data attributes to keep the address out of the page source
+  document.querySelectorAll('.js-email').forEach(function (el) {
+    var address = el.dataset.user + '@' + el.dataset.domain;
+    var link = document.createElement('a');
+    link.href = 'mailto:' + address;
+    link.textContent = address;
+    el.replaceWith(link);
+  });
 });
