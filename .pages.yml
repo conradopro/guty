@@ -54,6 +54,7 @@ content:
     type: collection
     path: content/news
     format: json
+    filename: "{fields.slug}.json"
     view:
       primary: title
       sort: order
