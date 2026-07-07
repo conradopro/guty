@@ -385,8 +385,22 @@ footer a:hover{color:#fff;}
   section{padding:52px 0;}
   .page-hero{padding:38px 0 28px;}
   .container{padding:0 18px;}
-  .fee-table{display:block; overflow-x:auto; -webkit-overflow-scrolling:touch;}
-  .fee-table th,.fee-table td{padding:11px 14px; font-size:.86rem; white-space:nowrap;}
+  .fee-table{display:block; border-collapse:collapse;}
+  .fee-table thead{display:none;}
+  .fee-table tbody{display:block; width:100%;}
+  .fee-table tr{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:14px;
+    padding:13px 16px;
+    border-top:1px solid var(--border);
+  }
+  .fee-table tbody tr:first-child{border-top:none;}
+  .fee-table td{padding:0; border-top:none; font-size:.88rem;}
+  .fee-table td:first-child{white-space:normal; flex:1 1 auto;}
+  .fee-table td:last-child{white-space:nowrap; flex:0 0 auto; text-align:right;}
+  .fee-table caption{padding:16px 16px 10px;}
   .bank-box, .total-box{padding:22px 20px;}
   .field-row{grid-template-columns:1fr;}
   .doc{padding:16px 18px;}
