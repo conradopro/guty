@@ -1,0 +1,10 @@
+{
+  "title": "testowa-aktualnosc",
+  "slug": "testowa-aktualnosc",
+  "date_label": "10-07-26",
+  "tag_label": "przypomnienie",
+  "tag_variant": "normal",
+  "featured": true,
+  "excerpt": "test\ntest",
+  "body": "<p>test</p><p>test</p>"
+}
