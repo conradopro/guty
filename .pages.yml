@@ -1,0 +1,126 @@
+media:
+  input: .
+  output: /
+
+content:
+  - name: strony
+    label: Strony główne
+    type: group
+    items:
+      - name: index
+        label: Strona główna
+        type: file
+        path: index.html
+        format: code
+
+      - name: informacje
+        label: Informacje
+        type: file
+        path: informacje.html
+        format: code
+
+      - name: dokumenty
+        label: Dokumenty
+        type: file
+        path: dokumenty.html
+        format: code
+
+      - name: oplaty
+        label: Opłaty
+        type: file
+        path: oplaty.html
+        format: code
+
+      - name: kalkulator
+        label: Kalkulator
+        type: file
+        path: kalkulator.html
+        format: code
+
+      - name: kontakt
+        label: Kontakt
+        type: file
+        path: kontakt.html
+        format: code
+
+      - name: mapa
+        label: Mapa ogrodu
+        type: file
+        path: mapa.html
+        format: code
+
+  - name: aktualnosci
+    label: Aktualności
+    type: collection
+    path: content/news
+    format: json
+    view:
+      primary: title
+      sort: order
+      order: asc
+    fields:
+      - name: title
+        label: Tytuł
+        type: string
+        required: true
+
+      - name: slug
+        label: "Adres strony (bez spacji, myślniki, np. nowy-wniosek)"
+        type: string
+        required: true
+        pattern: "^[a-z0-9-]+$"
+
+      - name: date_label
+        label: "Data / termin (tekst, np. „10 czerwca 2026”)"
+        type: string
+        required: true
+
+      - name: tag_label
+        label: Etykieta (np. „Ważne”, „Przypomnienie”)
+        type: string
+        required: true
+
+      - name: tag_variant
+        label: Styl etykiety
+        type: select
+        options:
+          values:
+            - label: Zwykła
+              value: normal
+            - label: Ważna (czerwona)
+              value: warn
+
+      - name: featured
+        label: Pokaż na stronie głównej (max 3 najważniejsze)
+        type: boolean
+
+      - name: order
+        label: Kolejność (mniejsza liczba = wyżej)
+        type: number
+
+      - name: excerpt
+        label: Krótki opis (widoczny na liście)
+        type: text
+        required: true
+
+      - name: body
+        label: Treść pełnej aktualności
+        type: rich-text
+        options:
+          format: html
+
+  - name: zaawansowane
+    label: Styl i skrypty (zaawansowane)
+    type: group
+    items:
+      - name: style
+        label: style.css
+        type: file
+        path: style.css
+        format: code
+
+      - name: script
+        label: script.js
+        type: file
+        path: script.js
+        format: code
