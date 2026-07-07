@@ -400,7 +400,7 @@ footer a:hover{color:#fff;}
   .fee-table td{padding:0; border-top:none; font-size:.88rem;}
   .fee-table td:first-child{white-space:normal; flex:1 1 auto;}
   .fee-table td:last-child{white-space:nowrap; flex:0 0 auto; text-align:right;}
-  .fee-table caption{padding:16px 16px 10px;}
+  .fee-table caption{padding:16px 16px 10px; font-size:.94rem; line-height:1.3;}
   .bank-box, .total-box{padding:22px 20px;}
   .field-row{grid-template-columns:1fr;}
   .doc{padding:16px 18px;}
