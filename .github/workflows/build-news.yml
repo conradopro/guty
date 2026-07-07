@@ -1,0 +1,33 @@
+name: Build news pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/news/**"
+      - "templates/**"
+      - "scripts/build-news.js"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate news pages
+        run: node scripts/build-news.js
+
+      - name: Commit generated pages
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto: przebuduj strony aktualności z content/news"
+          file_pattern: "aktualnosc-*.html aktualnosci.html index.html"
