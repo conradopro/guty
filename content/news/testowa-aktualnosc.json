@@ -5,6 +5,7 @@
   "tag_label": "przypomnienie",
   "tag_variant": "normal",
   "featured": true,
+  "order": 5,
   "excerpt": "test\ntest",
   "body": "<p>test</p><p>test</p>"
 }
