@@ -1,0 +1,11 @@
+{
+  "slug": "oplaty-2026",
+  "title": "Opłaty za 2026 rok — termin wnoszenia",
+  "date_label": "Termin do 30 czerwca 2026",
+  "tag_label": "Ważne",
+  "tag_variant": "warn",
+  "featured": true,
+  "order": 2,
+  "excerpt": "Opłaty uchwalone przez Walne Zebranie Sprawozdawcze na 2026 rok należy wnieść najpóźniej do 30 czerwca 2026 r.",
+  "body": "<p>Opłaty uchwalone przez Walne Zebranie Sprawozdawcze na 2026 rok należy wnieść najpóźniej do <strong>30 czerwca 2026 r.</strong></p>\n    <p>Opłaty wynikające ze zużycia wody i energii elektrycznej rozliczane są na bieżąco, w cyklu jednego miesiąca &mdash; nie czekaj z nimi do terminu rocznego.</p>\n    <p>Pełne zestawienie kwot (opłata członkowska, ogrodowa, za wywóz śmieci, fundusz rozwoju) oraz numer konta ROD znajdziesz w zakładce Opłaty.</p>\n      <div style=\"margin-top:26px; padding-top:22px; border-top:1px solid var(--border);\">\n      <a href=\"oplaty.html\" class=\"btn btn-solid\">Zobacz pełne zestawienie opłat &rarr;</a>\n      <a href=\"oplaty.html#kalkulator\" class=\"btn btn-outline\" style=\"margin-left:10px;\">Otwórz kalkulator opłat</a>\n    </div>"
+}

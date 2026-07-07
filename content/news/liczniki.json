@@ -1,0 +1,11 @@
+{
+  "slug": "liczniki",
+  "title": "Zdjęcia stanu liczników — obowiązek działkowca",
+  "date_label": "Cykl miesięczny",
+  "tag_label": "Przypomnienie",
+  "tag_variant": "normal",
+  "featured": true,
+  "order": 3,
+  "excerpt": "Każdy działkowiec zobowiązany jest do przesyłania zdjęć ze stanem licznika wody i energii do księgowej ROD w cyklu miesięcznym.",
+  "body": "<p>Każdy działkowiec zobowiązany jest do przesyłania zdjęć ze stanem licznika wody i energii do księgowej ROD, Pani Bożenny Piekutowskiej, w cyklu miesięcznym.</p>\n    <p>Regularne przekazywanie odczytów pozwala na bieżące i sprawiedliwe rozliczanie zużycia mediów, zamiast jednorazowego rozliczenia rocznego.</p>\n    <p style=\"color:var(--muted); font-size:.92rem;\">Wysokość opłat za media (5,50 zł/m&sup3; za wodę, 1,45 zł/kWh za energię) znajdziesz w zakładce Opłaty.</p>\n      <div style=\"margin-top:26px; padding-top:22px; border-top:1px solid var(--border);\">\n      <a href=\"oplaty.html#kalkulator\" class=\"btn btn-solid\">Przelicz zużycie w kalkulatorze &rarr;</a>\n    </div>"
+}
