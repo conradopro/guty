@@ -36,3 +36,37 @@ document.addEventListener('DOMContentLoaded', function () {
     el.replaceWith(link);
   });
 });
+
+// Baner zgody na pliki cookie
+(function () {
+  var css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css';
+  document.head.appendChild(css);
+
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
+  script.onload = function () {
+    window.CookieConsent.run({
+      guiOptions: {
+        consentModal: { layout: 'box', position: 'bottom left' }
+      },
+      categories: {
+        necessary: { enabled: true, readOnly: true }
+      },
+      language: {
+        default: 'pl',
+        translations: {
+          pl: {
+            consentModal: {
+              title: 'Używamy plików cookie',
+              description: 'Ta strona korzysta wyłącznie z niezbędnych plików cookie do prawidłowego działania.',
+              acceptAllBtn: 'Akceptuję'
+            }
+          }
+        }
+      }
+    });
+  };
+  document.head.appendChild(script);
+})();

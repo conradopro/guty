@@ -64,6 +64,28 @@ function replaceBetweenMarkers(fileContents, markerName, newInner) {
   return `${before}\n${newInner}\n    ${after}`;
 }
 
+const STATIC_PAGES = [
+  "index.html",
+  "aktualnosci.html",
+  "dokumenty.html",
+  "informacje.html",
+  "kontakt.html",
+  "mapa.html",
+  "oplaty.html",
+];
+
+function syncFooter(footer) {
+  for (const page of STATIC_PAGES) {
+    const pagePath = path.join(ROOT, page);
+    const html = fs.readFileSync(pagePath, "utf8");
+    const updated = html.replace(/<footer>[\s\S]*?<\/footer>/, footer);
+    if (updated !== html) {
+      fs.writeFileSync(pagePath, updated, "utf8");
+      console.log(`Zsynchronizowano stopkę w ${pagePath}`);
+    }
+  }
+}
+
 function main() {
   const items = readNewsItems();
   const header = fs.readFileSync(path.join(TEMPLATES_DIR, "_header.html"), "utf8").trim();
@@ -97,6 +119,9 @@ function main() {
   indexHtml = replaceBetweenMarkers(indexHtml, "NEWS-FEATURED", featuredCardsHtml);
   fs.writeFileSync(indexPath, indexHtml, "utf8");
   console.log(`Zaktualizowano ${indexPath}`);
+
+  // 4) Zsynchronizuj wspólną stopkę we wszystkich statycznych podstronach
+  syncFooter(footer);
 }
 
 main();
