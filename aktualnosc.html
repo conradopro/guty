@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aktualności — ROD im. Kisajno w Gutach</title>
+<title>Aktualność — ROD im. Kisajno w Gutach</title>
 <meta name="description" content="Aktualności i komunikaty Zarządu ROD im. Kisajno w Gutach.">
 <link rel="stylesheet" href="style.css">
 
@@ -35,48 +35,20 @@
 
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Strona główna</a> <span>/</span> <span>Aktualności</span></div>
-    <span class="badge">Co słychać w ogrodzie</span>
-    <h1>Aktualności</h1>
-    <p class="lead">Najważniejsze informacje i komunikaty Zarządu ROD im. Kisajno.</p>
+    <div class="breadcrumb"><a href="index.html">Strona główna</a> <span>/</span> <a href="aktualnosci.html">Aktualności</a> <span>/</span> <span id="artBreadcrumb">&hellip;</span></div>
+    <span class="tag" id="artTag" style="visibility:hidden;">&nbsp;</span>
+    <div class="date-pill" id="artDate" style="margin:10px 0 4px;"></div>
+    <h1 id="artTitle">Wczytywanie&hellip;</h1>
   </div>
 </section>
 
 <section class="bg-surface">
-  <div class="container">
-    <div class="grid grid-3">
-      <a href="aktualnosc-wniosek-w1.html" class="card reveal news-card">
-        <span class="tag warn">Ważne &mdash; dokumenty</span>
-        <div class="date-pill">10 czerwca 2026</div>
-        <h3 style="font-size:1.08rem; margin-top:8px;">Nowy wzór wniosku W-1 o przyłączenie do sieci energetycznej</h3>
-        <p>Właściwy wzór wniosku W-1 dla osób prywatnych. W polu &bdquo;nazwa obiektu&rdquo; wpisz altana. Wymagana mapka i zgoda Zarządu.</p>
-        <span class="card-link">Czytaj więcej &rarr;</span>
-      </a>
-      <a href="aktualnosc-oplaty-2026.html" class="card reveal news-card">
-        <span class="tag warn">Ważne</span>
-        <div class="date-pill">Termin do 30 czerwca 2026</div>
-        <h3 style="font-size:1.08rem; margin-top:8px;">Opłaty za 2026 rok &mdash; termin wnoszenia</h3>
-        <p>Opłaty uchwalone przez Walne Zebranie Sprawozdawcze na 2026 rok należy wnieść najpóźniej do 30 czerwca 2026 r.</p>
-        <span class="card-link">Czytaj więcej &rarr;</span>
-      </a>
-      <a href="aktualnosc-liczniki.html" class="card reveal news-card">
-        <span class="tag">Przypomnienie</span>
-        <div class="date-pill">Cykl miesięczny</div>
-        <h3 style="font-size:1.08rem; margin-top:8px;">Zdjęcia stanu liczników &mdash; obowiązek działkowca</h3>
-        <p>Każdy działkowiec zobowiązany jest do przesyłania zdjęć ze stanem licznika wody i energii do księgowej ROD w cyklu miesięcznym.</p>
-        <span class="card-link">Czytaj więcej &rarr;</span>
-      </a>
-      <a href="aktualnosc-walne-zebranie.html" class="card reveal news-card">
-        <span class="tag">Walne Zebranie</span>
-        <div class="date-pill">2026</div>
-        <h3 style="font-size:1.08rem; margin-top:8px;">Wysokość opłat na 2026 rok zatwierdzona</h3>
-        <p>Walne Zebranie Sprawozdawcze zatwierdziło wysokość opłat obowiązujących w 2026 roku, w tym opłatę ogrodową i fundusz rozwoju ogrodu.</p>
-        <span class="card-link">Czytaj więcej &rarr;</span>
-      </a>
+  <div class="container" style="max-width:760px;">
+    <div class="card" style="padding:34px 36px;" id="artBody">
+      <p>Wczytywanie treści&hellip;</p>
     </div>
-    <div class="grid grid-3" id="dynamicNewsGrid" style="margin-top:22px;"></div>
-    <div class="note-box">
-      Kliknij kartę, aby przeczytać pełną treść aktualności na osobnej stronie. Zarząd może dodawać kolejne wpisy przez panel CMS &mdash; pojawią się tu automatycznie.
+    <div style="margin-top:26px;">
+      <a href="aktualnosci.html" class="btn btn-outline btn-sm">&larr; Wszystkie aktualności</a>
     </div>
   </div>
 </section>
@@ -113,11 +85,57 @@
 </footer>
 
 <script src="script.js"></script>
-<script src="news.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function(){
-  if (window.renderDynamicNewsList) window.renderDynamicNewsList('dynamicNewsGrid');
-});
+(function () {
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  async function loadArticle() {
+    var params = new URLSearchParams(window.location.search);
+    var slug = params.get('slug');
+    var titleEl = document.getElementById('artTitle');
+    var bodyEl = document.getElementById('artBody');
+    if (!slug) {
+      titleEl.textContent = 'Nie znaleziono aktualności.';
+      bodyEl.innerHTML = '<p>Brak wskazanego wpisu (brak parametru w adresie).</p>';
+      return;
+    }
+    try {
+      var res = await fetch('content/news/' + encodeURIComponent(slug) + '.json');
+      if (!res.ok) throw new Error('not found');
+      var data = await res.json();
+
+      document.title = (data.title || 'Aktualność') + ' — ROD im. Kisajno w Gutach';
+      document.getElementById('artBreadcrumb').textContent = data.title || '';
+      titleEl.textContent = data.title || '';
+
+      var tagEl = document.getElementById('artTag');
+      tagEl.textContent = data.tag_label || '';
+      tagEl.className = data.tag_variant === 'warn' ? 'tag warn' : 'tag';
+      tagEl.style.visibility = data.tag_label ? 'visible' : 'hidden';
+
+      document.getElementById('artDate').textContent = data.date_label || '';
+
+      var bodyHtml = data.body || ('<p>' + escapeHtml(data.excerpt || '') + '</p>');
+      if (data.attachment) {
+        bodyHtml +=
+          '<div style="margin-top:26px; padding-top:22px; border-top:1px solid var(--border);">' +
+          '<a href="' + data.attachment + '" target="_blank" rel="noopener" class="btn btn-solid">' +
+          escapeHtml(data.attachment_label || 'Pobierz plik') + ' &rarr;</a></div>';
+      }
+      bodyEl.innerHTML = bodyHtml;
+    } catch (e) {
+      titleEl.textContent = 'Nie znaleziono aktualności.';
+      bodyEl.innerHTML = '<p>Nie udało się wczytać treści tej aktualności. Sprawdź, czy adres jest poprawny, albo wróć do listy wszystkich aktualności.</p>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadArticle);
+})();
 </script>
 </body>
 </html>
