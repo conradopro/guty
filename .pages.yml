@@ -110,6 +110,16 @@ content:
         options:
           format: html
 
+      - name: attachment
+        label: Załącznik (plik do pobrania, opcjonalnie)
+        type: file
+        required: false
+
+      - name: attachment_label
+        label: "Tekst przycisku (np. „Pobierz wniosek W-1”)"
+        type: string
+        required: false
+
   - name: zaawansowane
     label: Styl i skrypty (zaawansowane)
     type: group
