@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — ROD im. Kisajno w Gutach</title>
+<meta name="description" content="{{EXCERPT}}">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+{{HEADER}}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Strona główna</a> <span>/</span> <a href="aktualnosci.html">Aktualności</a> <span>/</span> <span>{{TITLE}}</span></div>
+    <span class="tag{{TAG_CLASS}}">{{TAG_LABEL}}</span>
+    <div class="date-pill" style="margin:10px 0 4px;">{{DATE_LABEL}}</div>
+    <h1>{{TITLE}}</h1>
+  </div>
+</section>
+
+<section class="bg-surface">
+  <div class="container" style="max-width:760px;">
+    <div class="card reveal" style="padding:34px 36px;">
+      {{BODY}}
+      {{ATTACHMENT_BLOCK}}
+    </div>
+    <div style="margin-top:26px;">
+      <a href="aktualnosci.html" class="btn btn-outline btn-sm">&larr; Wszystkie aktualności</a>
+    </div>
+  </div>
+</section>
+
+{{FOOTER}}
+
+<script src="script.js"></script>
+</body>
+</html>
