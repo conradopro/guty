@@ -1,6 +1,6 @@
 media:
-  input: .
-  output: /
+  input: uploads
+  output: uploads
 
 content:
   - name: strony
