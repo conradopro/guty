@@ -27,6 +27,20 @@ function escapeAttr(str) {
   return String(str ?? "").replace(/"/g, "&quot;");
 }
 
+function escapeHtml(str) {
+  return String(str ?? "").replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+
+function renderAttachmentBlock(item) {
+  if (!item.attachment) return "";
+  const label = escapeHtml(item.attachment_label || "Pobierz plik");
+  return `<div style="margin-top:26px; padding-top:22px; border-top:1px solid var(--border);">
+        <a href="${item.attachment}" target="_blank" rel="noopener" class="btn btn-solid">${label} &rarr;</a>
+      </div>`;
+}
+
 function renderCard(item) {
   const tagClass = item.tag_variant === "warn" ? " warn" : "";
   return `      <a href="aktualnosc-${item.slug}.html" class="card reveal news-card">
@@ -47,6 +61,7 @@ function renderArticle(item, header, footer, template) {
     .split("{{TAG_LABEL}}").join(item.tag_label)
     .split("{{DATE_LABEL}}").join(item.date_label)
     .split("{{BODY}}").join(item.body)
+    .split("{{ATTACHMENT_BLOCK}}").join(renderAttachmentBlock(item))
     .split("{{HEADER}}").join(header)
     .split("{{FOOTER}}").join(footer);
 }
