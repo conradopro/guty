@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ogrodkisajnoguty.pl/sitemap.xml
