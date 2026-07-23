@@ -57,8 +57,8 @@ content:
     filename: "{fields.slug}.json"
     view:
       primary: title
-      sort: order
-      order: asc
+      sort: date
+      order: desc
     fields:
       - name: title
         label: Tytuł
@@ -95,9 +95,10 @@ content:
         label: Pokaż na stronie głównej (max 3 najważniejsze)
         type: boolean
 
-      - name: order
-        label: Kolejność (mniejsza liczba = wyżej)
-        type: number
+      - name: date
+        label: Data publikacji (decyduje o kolejności — nowsze zawsze wyżej)
+        type: date
+        required: true
 
       - name: excerpt
         label: Krótki opis (widoczny na liście)

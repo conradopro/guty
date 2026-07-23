@@ -19,7 +19,7 @@ function readNewsItems() {
       throw new Error(`Błąd w pliku content/news/${f}: ${e.message}`);
     }
   });
-  items.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+  items.sort((a, b) => new Date(b.date) - new Date(a.date));
   return items;
 }
 
