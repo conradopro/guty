@@ -41,6 +41,14 @@ function renderAttachmentBlock(item) {
       </div>`;
 }
 
+function renderCtaBlock(item) {
+  if (!item.cta_url) return "";
+  const label = escapeHtml(item.cta_label || "Więcej informacji");
+  return `<div style="margin-top:26px; padding-top:22px; border-top:1px solid var(--border);">
+        <a href="${item.cta_url}" target="_blank" rel="noopener" class="btn btn-solid">${label} &rarr;</a>
+      </div>`;
+}
+
 function renderCard(item) {
   const tagClass = item.tag_variant === "warn" ? " warn" : "";
   return `      <a href="aktualnosc-${item.slug}.html" class="card reveal news-card">
@@ -62,6 +70,7 @@ function renderArticle(item, header, footer, template) {
     .split("{{DATE_LABEL}}").join(item.date_label)
     .split("{{BODY}}").join(item.body)
     .split("{{ATTACHMENT_BLOCK}}").join(renderAttachmentBlock(item))
+    .split("{{CTA_BLOCK}}").join(renderCtaBlock(item))
     .split("{{HEADER}}").join(header)
     .split("{{FOOTER}}").join(footer);
 }

@@ -121,6 +121,16 @@ content:
         type: string
         required: false
 
+      - name: cta_url
+        label: "Link zewnętrzny do przycisku (np. do grupy na Facebooku)"
+        type: string
+        required: false
+
+      - name: cta_label
+        label: "Tekst przycisku dla linku zewnętrznego (np. „Dołącz do grupy na Facebooku”)"
+        type: string
+        required: false
+
   - name: zaawansowane
     label: Styl i skrypty (zaawansowane)
     type: group
